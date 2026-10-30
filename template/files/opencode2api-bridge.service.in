@@ -1,0 +1,27 @@
+[Unit]
+Description=Bridge 9Router -> opencode2api (__BRIDGE_PORT__ -> __API_PORT__)
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+WorkingDirectory=__STACK_DIR__
+ExecStart=__NODE_BIN__ __STACK_DIR__/bridge.js
+Environment=HOME=%h
+Environment=XDG_RUNTIME_DIR=/run/user/__UID__
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/__UID__/bus
+Environment=PATH=__NODE_DIR__:%h/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+Environment=BRIDGE_PORT=__BRIDGE_PORT__
+Environment=API_PORT=__API_PORT__
+Environment=OPENCODE2API_KEY=__API_KEY__
+Environment=ROTATE_SCRIPT=__STACK_DIR__/rotate_wireproxy.py
+Restart=always
+RestartSec=3
+LimitNOFILE=65535
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=opencode2api-bridge
+
+[Install]
+WantedBy=default.target

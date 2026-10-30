@@ -1,0 +1,11 @@
+[Unit]
+Description=Wireproxy WARP exits watchdog
+
+[Service]
+Type=oneshot
+ExecStart=%h/scripts/warp-watchdog.sh
+Environment=HOME=%h
+Environment=EXIT_COUNT=__EXIT_COUNT__
+Environment=XDG_RUNTIME_DIR=/run/user/__UID__
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/__UID__/bus
+Environment=PATH=%h/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

@@ -1,0 +1,20 @@
+# transcript sumber, memuat kredensial
+9router.md
+
+# artefak lokal
+*.log
+*.sqlite
+*.sqlite-*
+config.json
+.env
+backup/
+
+# python
+__pycache__/
+*.pyc
+
+# editor / OS
+.DS_Store
+.opencode/
+.idea/
+.vscode/

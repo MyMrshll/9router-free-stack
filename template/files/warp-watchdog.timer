@@ -1,0 +1,11 @@
+[Unit]
+Description=Run the wireproxy watchdog every 2 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=2min
+AccuracySec=15s
+Persistent=true
+
+[Install]
+WantedBy=timers.target
